@@ -1,9 +1,8 @@
 object AllPerm extends App {
-  def allPerm(n: Int): List[List[Int]] = {
-    if n == 0 then List(List(0))
-    else
-      if n == 1 then List(List(1))
-      else helper(allPerm(n-1), n)
+  def allPerm(n: Int): List[List[Int]] = n match {
+    case 0 => List(List(0))
+    case 1 => List(List(1))
+    case _ => helper(allPerm(n-1), n)
   }
 
   def helper(list: List[List[Int]], n: Int): List[List[Int]] = {
