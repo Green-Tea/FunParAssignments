@@ -14,6 +14,4 @@ object TurnIt extends App {
     if A.head.isEmpty then Nil
     else getHead(A) :: transpose(getTail(A))
   }
-
-  println(transpose(List(List(1,2,3,4), List(5,6,7,8), List(9,10,11,12))))
 }
