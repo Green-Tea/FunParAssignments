@@ -40,7 +40,7 @@ object Parser extends JavaTokenParsers {
     case numStr => Constant(numStr.toFloat)
   }
 
-  def apply(input: String): Option[Expression] = 
+  def apply(input: String): Option[Expression] =
     parseAll(expr, input) match {
       case Success(result, _) => Some(result)
       case _ => None
