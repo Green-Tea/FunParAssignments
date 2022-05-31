@@ -9,8 +9,10 @@ object Newton {
 
   def solve(f: Double => Double, df: Double => Double, 
             guess: Double = 1.0): Option[Double] = {
-
-    ??? // replace me with real code
+    try {
+      Some(guess - f(guess) / df(guess))
+    } catch {
+      case _ => None
+    }
   }
-
 }

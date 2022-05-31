@@ -19,16 +19,24 @@ object Process {
 
   // Example: eval(e, Map("x" -> 4.0)) evaluates the expression 
   // with the variable "x" set to 4.0.
-  def eval(e: Expression, varAssn: Map[String, Double]): Double =  {
+  def eval(e: Expression, varAssn: Map[String, Double]): Double =  e match {
+    case Constant(n) => n
+    case Var(name) => varAssn(name)
+    case Prod(e1, e2) => eval(e1, varAssn) * eval(e2, varAssn)
+    case Sum(e1, e2) => eval(e1, varAssn) + eval(e2, varAssn)
+    case Power(e1, e2) => math.pow(eval(e1, varAssn), eval(e2, varAssn))
 
-    ???
   }
 
   // symbolically differentiates an expression e: Expression with 
   // respect to the variable varName: String
-  def differentiate(e: Expression, varName: String): Expression = {
-    
-    ???
+  def differentiate(e: Expression, varName: String): Expression = e match {
+    case Constant(n) => Constant(0)
+    case Sum(e1, e2) => Sum(differentiate(e1, varName), differentiate(e2, varName))
+    case Prod(e1, e2) => Sum(Prod(differentiate(e1, varName), e2), Prod(e1, differentiate(e2, varName)))
+    case Power(e1, e2) => Prod(Prod(Power(e1, Sum(e, Constant(-1))), e2), differentiate(e1, varName))
+    case Var(name) => if name.equals(Var(name)) then Constant(1) else e
+
   }
 
   // forms a new expression that simplifies the given expression e: Expression
