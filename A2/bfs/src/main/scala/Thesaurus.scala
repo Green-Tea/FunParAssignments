@@ -39,6 +39,7 @@ object Thesaurus extends App {
     val nbrs = (storeKey: String) => data.getOrElse(storeKey, Nil).toSet
     val (parent, distance) = GraphBFS.bfs(nbrs, "clear")
 
+    @tailrec
     def parents(parent: Map[String, String], target: String, result: List[String]): Option[List[String]] = {
       if parent.isEmpty then Nil
       val nextWord = parent.get(target)
@@ -50,6 +51,4 @@ object Thesaurus extends App {
     val ans = (storeKey: String) => find => parents(GraphBFS.bfs(nbrs, storeKey)._1, find, List(find))
     ans
   }
-
-
 }
