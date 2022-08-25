@@ -1,0 +1,9 @@
+hello
+world
+hello
+worl
+he
+bye
+goodbye
+bye goodbye
+byebye
