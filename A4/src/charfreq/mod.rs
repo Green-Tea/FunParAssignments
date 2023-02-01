@@ -29,7 +29,6 @@ mod tests {
 
     #[test]
     fn basic_tests() {
-        println!("{:?}", par_char_freq("lorenzo".as_bytes()));
         println!("{:?}", par_char_freq("horse".as_bytes()));
         println!("{:?}", par_char_freq("aa aaa".as_bytes()));
         println!("{:?}", par_char_freq("".as_bytes()));
